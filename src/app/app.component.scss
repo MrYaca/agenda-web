@@ -1,0 +1,19 @@
+.btn {
+  background-color: aquamarine;
+  width: 100px;
+  height: 100px;
+  padding-top: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.btn:hover {
+  background-color: firebrick;
+  color: white;
+  border-radius: 40%;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
