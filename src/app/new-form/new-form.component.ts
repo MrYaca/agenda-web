@@ -29,6 +29,7 @@ export class NewFormComponent {
       .subscribe(
         response => {
           console.log('OK: ', response);
+          this.personForm.reset();
         },
         error => {
           console.log('ERROR: ', error);
