@@ -1,19 +1,35 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { LayoutModule } from '@angular/cdk/layout';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSortModule,
+  MatTableModule,
+  MatToolbarModule,
+  MatTreeModule
+} from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyNavComponent } from './my-nav/my-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatTreeModule, MatInputModule, MatSelectModule, MatRadioModule } from '@angular/material';
-import { MyTableComponent } from './my-table/my-table.component';
 import { MyDashComponent } from './my-dash/my-dash.component';
-import { MyTreeComponent } from './my-tree/my-tree.component';
 import { MyDdComponent } from './my-dd/my-dd.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MyNavComponent } from './my-nav/my-nav.component';
+import { MyTableComponent } from './my-table/my-table.component';
+import { MyTreeComponent } from './my-tree/my-tree.component';
 import { NewFormComponent } from './new-form/new-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,9 +62,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

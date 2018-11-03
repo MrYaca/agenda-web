@@ -1,21 +1,40 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
-import { MyTableDataSource } from './my-table-datasource';
+import { DataSource } from '@angular/cdk/table';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PersonService } from '../services/person.service';
 
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
-  styleUrls: ['./my-table.component.scss'],
+  styleUrls: ['./my-table.component.scss']
 })
 export class MyTableComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  dataSource: MyTableDataSource;
+  dataSource = new PersonDataSource(this.personService);
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['name', 'lastname', 'nick'];
 
-  ngOnInit() {
-    this.dataSource = new MyTableDataSource(this.paginator, this.sort);
+  constructor(private personService: PersonService) {
+    this.personService.getConfig().subscribe(config => {
+      console.log(config);
+    });
+
+    // this.personService.getPersons().subscribe(persons => {
+    //   console.log(persons);
+    // });
   }
+
+  ngOnInit() {}
+}
+
+export class PersonDataSource extends DataSource<any> {
+  constructor(private personService: PersonService) {
+    super();
+  }
+
+  connect(): Observable<any> {
+    return this.personService.getPersons();
+  }
+
+  disconnect() {}
 }
