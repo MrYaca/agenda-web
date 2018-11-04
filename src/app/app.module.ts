@@ -18,6 +18,7 @@ import {
   MatSortModule,
   MatTableModule,
   MatToolbarModule,
+  MatTooltipModule,
   MatTreeModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -62,6 +63,7 @@ import { NewFormComponent } from './new-form/new-form.component';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

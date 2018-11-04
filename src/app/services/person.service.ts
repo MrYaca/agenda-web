@@ -23,6 +23,13 @@ export class PersonService {
     return this.http.post(this.apiUrl, person);
   }
 
+  updatePerson(person) {
+    return this.http.put(
+      this.apiUrl + '/' + person.id,
+      person
+    );
+  }
+
   deletePerson(personId) {
     return this.http.delete(this.apiUrl + '/' + personId);
   }
