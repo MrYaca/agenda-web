@@ -22,4 +22,8 @@ export class PersonService {
   addPerson(person) {
     return this.http.post(this.apiUrl, person);
   }
+
+  deletePerson(personId) {
+    return this.http.delete(this.apiUrl + '/' + personId);
+  }
 }
