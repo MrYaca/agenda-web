@@ -10,7 +10,8 @@ import { PersonService } from '../services/person.service';
 })
 export class MyTableComponent implements OnInit {
   persons = new BehaviorSubject<any[]>([]);
-  dataSource = new PersonDataSource(this.data);
+  dataSource = new PersonDataSource(this.persons);
+
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
     'name',
@@ -20,9 +21,11 @@ export class MyTableComponent implements OnInit {
   ];
 
   constructor(private personService: PersonService) {
+    // Load local files
     this.personService.getConfig().subscribe(config => {
       console.log(config);
     });
+
     this.personService
       .getPersons()
       .subscribe((persons: any[]) => {
