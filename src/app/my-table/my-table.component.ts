@@ -9,7 +9,7 @@ import { PersonService } from '../services/person.service';
   styleUrls: ['./my-table.component.scss']
 })
 export class MyTableComponent implements OnInit {
-  data = new BehaviorSubject<any[]>([]);
+  persons = new BehaviorSubject<any[]>([]);
   dataSource = new PersonDataSource(this.data);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
@@ -26,7 +26,7 @@ export class MyTableComponent implements OnInit {
     this.personService
       .getPersons()
       .subscribe((persons: any[]) => {
-        this.data.next(persons);
+        this.persons.next(persons);
       });
   }
 
@@ -38,12 +38,12 @@ export class MyTableComponent implements OnInit {
         console.log('OK: ', response);
 
         // Remove deleted person from the current data collection;
-        const tmp = this.data.value.filter(
+        const tmp = this.persons.value.filter(
           p => p.id !== person.id
         );
 
         // Update data source stream
-        this.data.next(tmp);
+        this.persons.next(tmp);
       },
       error => {
         console.log('ERROR: ', error);
@@ -53,16 +53,16 @@ export class MyTableComponent implements OnInit {
 }
 
 export class PersonDataSource extends DataSource<any> {
-  data: BehaviorSubject<any>;
+  persons: BehaviorSubject<any>;
 
   /** Stream of data that is provided to the table. */
-  constructor(data: BehaviorSubject<any>) {
+  constructor(persons: BehaviorSubject<any>) {
     super();
-    this.data = data;
+    this.persons = persons;
   }
 
   connect(): Observable<any> {
-    return this.data;
+    return this.persons;
   }
 
   disconnect() {}
